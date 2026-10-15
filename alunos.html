@@ -36,16 +36,30 @@ const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_A5fvZ8PwNhIiJsk_ycExYA_l6I6-2sG
 const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 const form=document.getElementById('login'),email=document.getElementById('email'),password=document.getElementById('password'),message=document.getElementById('message'),signup=document.getElementById('signup');
 function show(text){message.style.display='block';message.textContent=text}
+function preserveInputs(){
+  const savedEmail=email.value;
+  const savedPassword=password.value;
+  requestAnimationFrame(()=>{
+    if(!email.value) email.value=savedEmail;
+    if(!password.value) password.value=savedPassword;
+  });
+}
+function showAndPreserve(text){show(text);preserveInputs()}
+window.addEventListener('pageshow',()=>{});
+
 form.addEventListener('submit',async e=>{e.preventDefault();show('Verificando sua conta…');
 const {data,error}=await client.auth.signInWithPassword({email:email.value.trim(),password:password.value});
-if(error){show('Não foi possível entrar. Confira o e-mail e a senha e tente novamente.');return}
+if(error){showAndPreserve('Não foi possível entrar. Confira o e-mail e a senha e tente novamente.');return}
 const {data:access,error:accessError}=await client.from('student_course_access').select('access_granted').eq('user_id',data.user.id).maybeSingle();
-if(accessError){show('Login feito, mas não foi possível verificar a permissão. O conteúdo do curso não foi aberto.');return}
-if(access?.access_granted===true){show('Conta autenticada e acesso autorizado. A área de aulas ainda não foi conectada a esta página.');return}
-show('Você entrou na conta, mas o acesso ao curso ainda não foi liberado.')}
+if(accessError){showAndPreserve('Login feito, mas não foi possível verificar a permissão. O conteúdo do curso não foi aberto.');return}
+if(access?.access_granted===true){showAndPreserve('Conta autenticada e acesso autorizado. A área de aulas ainda não foi conectada a esta página.');return}
+showAndPreserve('Você entrou na conta, mas o acesso ao curso ainda não foi liberado.')}
 signup.addEventListener('click',async()=>{if(!email.value.trim()||password.value.length<6){show('Digite seu e-mail e uma senha com pelo menos 6 caracteres.');return}
-show('Criando conta…');const {data,error}=await client.auth.signUp({email:email.value.trim(),password:password.value});
-if(error){show('Não foi possível criar a conta. Confira os dados e tente novamente.');return}
-show(data.session?'Conta criada. Sua conta ainda precisa ter acesso ao curso liberado.':'Cadastro iniciado. Confira seu e-mail para confirmar a conta. Depois, o acesso ao curso precisa ser liberado.');});
+const emailValue=email.value.trim();
+const passwordValue=password.value;
+showAndPreserve('Criando conta…');
+const {data,error}=await client.auth.signUp({email:emailValue,password:passwordValue});
+if(error){showAndPreserve('Não foi possível criar a conta. Confira os dados e tente novamente.');return}
+showAndPreserve(data.session?'Conta criada. Sua conta ainda precisa ter acesso ao curso liberado.':'Cadastro iniciado. Confira seu e-mail para confirmar a conta. Depois, o acesso ao curso precisa ser liberado.');});
 </script>
 </body></html>
