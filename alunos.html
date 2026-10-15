@@ -29,13 +29,17 @@ button.secondary{background:#1b1b20;border:1px solid var(--line);color:var(--tex
 </section>
 <div class="foot">BRYNOX • Preto, cinza e prata</div>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" onerror="this.onerror=null;this.src=\'https://unpkg.com/@supabase/supabase-js@2\'"></script>
 <script>
 const SUPABASE_URL = 'https://qtfingdojmzwgidkcrcr.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_A5fvZ8PwNhIiJsk_ycExYA_l6I6-2sG';
-const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 const form=document.getElementById('login'),email=document.getElementById('email'),password=document.getElementById('password'),message=document.getElementById('message'),signup=document.getElementById('signup');
 function show(text){message.style.display='block';message.textContent=text}
+// Prevent the browser from reloading and clearing the fields if the Supabase library fails to load.
+form.addEventListener('submit',e=>e.preventDefault());
+signup.addEventListener('click',()=>{if(!window.supabase){show('A conexão de login não carregou. Verifique sua internet e recarregue esta página. Seus dados não foram enviados.')}});
+if(!window.supabase){show('A conexão de login não carregou. Recarregue a página. Se continuar, tente novamente mais tarde.');throw new Error('Supabase JS library failed to load');}
+const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 function preserveInputs(){
   const savedEmail=email.value;
   const savedPassword=password.value;
