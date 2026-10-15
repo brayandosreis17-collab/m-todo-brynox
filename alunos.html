@@ -1,69 +1,39 @@
 <!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BRYNOX — Área do aluno</title>
 <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--bg:#09090b;--panel:#131316;--line:#29292f;--text:#f3f3f5;--muted:#a5a5ae;--silver:#d9dbe1}
-*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at top,#202024 0%,var(--bg) 48%);color:var(--text);font:16px/1.55 Inter,system-ui,Arial,sans-serif;display:grid;place-items:center;padding:24px}
-.wrap{width:min(100%,440px)}.brand{text-align:center;font:700 42px 'UnifrakturCook',Georgia,serif;color:var(--silver);margin-bottom:8px}.eyebrow{text-align:center;color:var(--muted);letter-spacing:.22em;font-size:11px;text-transform:uppercase;margin-bottom:26px}
-.card{border:1px solid var(--line);background:rgba(19,19,22,.96);border-radius:18px;padding:26px;box-shadow:0 18px 60px #0007}h1{font-size:23px;margin:0 0 6px}p{color:var(--muted);margin:0 0 20px;font-size:14px}
-label{display:block;font-size:12px;color:#c9c9d0;margin:14px 0 6px}input{width:100%;padding:12px 13px;border-radius:10px;border:1px solid var(--line);background:#09090b;color:white;font:inherit;outline:none}input:focus{border-color:#c9ccd3}
-button{width:100%;border:0;border-radius:10px;padding:12px 16px;margin-top:14px;font-weight:750;cursor:pointer;background:linear-gradient(135deg,#fff,#c9ccd3 55%,#8d919a);color:#09090b}
-button.secondary{background:#1b1b20;border:1px solid var(--line);color:var(--text);margin-top:9px}.message{margin-top:16px;padding:12px;border-radius:10px;background:#0b0b0d;border:1px solid var(--line);font-size:13px;white-space:pre-wrap;display:none}.foot{color:#85858f;font-size:11px;text-align:center;margin-top:18px}
-</style>
-</head>
-<body><main class="wrap">
-<div class="brand">𝕭𝖗𝖞𝖓𝖔𝖝</div><div class="eyebrow">Área do aluno</div>
-<section class="card">
-<h1>Entre na sua conta</h1><p>Use seu e-mail e senha para verificar sua conta BRYNOX.</p>
-<form id="login">
-<label for="email">E-mail</label><input id="email" type="email" autocomplete="email" required>
-<label for="password">Senha</label><input id="password" type="password" autocomplete="current-password" minlength="6" required>
-<button type="submit">Entrar</button>
-</form>
-<button id="signup" class="secondary" type="button">Criar conta</button>
-<div id="message" class="message" role="status"></div>
-</section>
-<div class="foot">BRYNOX • Preto, cinza e prata</div>
-</main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" onerror="this.onerror=null;this.src=\'https://unpkg.com/@supabase/supabase-js@2\'"></script>
+:root{color-scheme:dark;--bg:#09090b;--panel:#131316;--line:#29292f;--text:#f3f3f5;--muted:#a5a5ae;--silver:#d9dbe1}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at top,#202024 0%,var(--bg) 48%);color:var(--text);font:16px/1.55 system-ui,Arial,sans-serif;display:grid;place-items:center;padding:24px}.wrap{width:min(100%,440px)}.brand{text-align:center;font:700 42px 'UnifrakturCook',Georgia,serif;color:var(--silver);margin-bottom:8px}.eyebrow{text-align:center;color:var(--muted);letter-spacing:.22em;font-size:11px;text-transform:uppercase;margin-bottom:26px}.card{border:1px solid var(--line);background:rgba(19,19,22,.96);border-radius:18px;padding:26px;box-shadow:0 18px 60px #0007}h1{font-size:23px;margin:0 0 6px}p{color:var(--muted);margin:0 0 20px;font-size:14px}label{display:block;font-size:12px;color:#c9c9d0;margin:14px 0 6px}input{width:100%;padding:12px 13px;border-radius:10px;border:1px solid var(--line);background:#09090b;color:white;font:inherit;outline:none}input:focus{border-color:#c9ccd3}button{width:100%;border:0;border-radius:10px;padding:12px 16px;margin-top:14px;font-weight:750;cursor:pointer;background:linear-gradient(135deg,#fff,#c9ccd3 55%,#8d919a);color:#09090b}button.secondary{background:#1b1b20;border:1px solid var(--line);color:var(--text);margin-top:9px}.message{margin-top:16px;padding:12px;border-radius:10px;background:#0b0b0d;border:1px solid var(--line);font-size:13px;white-space:pre-wrap;display:none}.foot{color:#85858f;font-size:11px;text-align:center;margin-top:18px}
+</style></head><body><main class="wrap"><div class="brand">𝕭𝖗𝖞𝖓𝖔𝖝</div><div class="eyebrow">Área do aluno</div><section class="card"><h1>Entre na sua conta</h1><p>Use seu e-mail e senha para verificar sua conta BRYNOX.</p>
+<label for="email">E-mail</label><input id="email" type="email" autocomplete="email">
+<label for="password">Senha</label><input id="password" type="password" autocomplete="current-password" minlength="6">
+<button id="login" type="button">Entrar</button><button id="signup" class="secondary" type="button">Criar conta</button><div id="message" class="message" role="status" aria-live="polite"></div></section><div class="foot">BRYNOX • Preto, cinza e prata</div></main>
 <script>
-const SUPABASE_URL = 'https://qtfingdojmzwgidkcrcr.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_A5fvZ8PwNhIiJsk_ycExYA_l6I6-2sG';
-const form=document.getElementById('login'),email=document.getElementById('email'),password=document.getElementById('password'),message=document.getElementById('message'),signup=document.getElementById('signup');
+const email=document.getElementById('email'), password=document.getElementById('password'), message=document.getElementById('message');
 function show(text){message.style.display='block';message.textContent=text}
-// Prevent the browser from reloading and clearing the fields if the Supabase library fails to load.
-form.addEventListener('submit',e=>e.preventDefault());
-signup.addEventListener('click',()=>{if(!window.supabase){show('A conexão de login não carregou. Verifique sua internet e recarregue esta página. Seus dados não foram enviados.')}});
-if(!window.supabase){show('A conexão de login não carregou. Recarregue a página. Se continuar, tente novamente mais tarde.');throw new Error('Supabase JS library failed to load');}
-const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
-function preserveInputs(){
-  const savedEmail=email.value;
-  const savedPassword=password.value;
-  requestAnimationFrame(()=>{
-    if(!email.value) email.value=savedEmail;
-    if(!password.value) password.value=savedPassword;
-  });
-}
-function showAndPreserve(text){show(text);preserveInputs()}
-window.addEventListener('pageshow',()=>{});
-
-form.addEventListener('submit',async e=>{e.preventDefault();show('Verificando sua conta…');
-const {data,error}=await client.auth.signInWithPassword({email:email.value.trim(),password:password.value});
-if(error){showAndPreserve('Não foi possível entrar. Confira o e-mail e a senha e tente novamente.');return}
-const {data:access,error:accessError}=await client.from('student_course_access').select('access_granted').eq('user_id',data.user.id).maybeSingle();
-if(accessError){showAndPreserve('Login feito, mas não foi possível verificar a permissão. O conteúdo do curso não foi aberto.');return}
-if(access?.access_granted===true){showAndPreserve('Conta autenticada e acesso autorizado. A área de aulas ainda não foi conectada a esta página.');return}
-showAndPreserve('Você entrou na conta, mas o acesso ao curso ainda não foi liberado.')}
-signup.addEventListener('click',async()=>{if(!email.value.trim()||password.value.length<6){show('Digite seu e-mail e uma senha com pelo menos 6 caracteres.');return}
-const emailValue=email.value.trim();
-const passwordValue=password.value;
-showAndPreserve('Criando conta…');
-const {data,error}=await client.auth.signUp({email:emailValue,password:passwordValue});
-if(error){showAndPreserve('Não foi possível criar a conta. Confira os dados e tente novamente.');return}
-showAndPreserve(data.session?'Conta criada. Sua conta ainda precisa ter acesso ao curso liberado.':'Cadastro iniciado. Confira seu e-mail para confirmar a conta. Depois, o acesso ao curso precisa ser liberado.');});
+function values(){return {email:email.value.trim(),password:password.value}}
+document.getElementById('login').addEventListener('click', async function(){
+ const v=values(); if(!v.email||!v.password){show('Digite seu e-mail e sua senha.');return}
+ if(!window.supabase){show('O serviço de login não carregou. Recarregue a página. Seus dados não foram enviados.');return}
+ this.disabled=true;show('Verificando sua conta…');
+ try{const client=window.supabase.createClient('https://qtfingdojmzwgidkcrcr.supabase.co','sb_publishable_A5fvZ8PwNhIiJsk_ycExYA_l6I6-2sG');
+ const {data,error}=await client.auth.signInWithPassword(v);
+ if(error){show('Não foi possível entrar: '+error.message);return}
+ const {data:access,error:ae}=await client.from('student_course_access').select('access_granted').eq('user_id',data.user.id).maybeSingle();
+ if(ae){show('Entrou na conta, mas não foi possível verificar o acesso: '+ae.message);return}
+ show(access&&access.access_granted?'Login confirmado. A página das aulas ainda precisa ser conectada.':'Login confirmado, mas o acesso ao curso ainda não foi liberado.');
+ }catch(e){show('Falha de conexão: '+(e&&e.message?e.message:'erro desconhecido'))}finally{this.disabled=false}
+});
+document.getElementById('signup').addEventListener('click', async function(){
+ const v=values();if(!v.email||v.password.length<6){show('Digite um e-mail válido e uma senha com pelo menos 6 caracteres.');return}
+ if(!window.supabase){show('O serviço de cadastro não carregou. Recarregue a página. Seus dados não foram enviados.');return}
+ this.disabled=true;show('Criando conta…');
+ try{const client=window.supabase.createClient('https://qtfingdojmzwgidkcrcr.supabase.co','sb_publishable_A5fvZ8PwNhIiJsk_ycExYA_l6I6-2sG');
+ const {data,error}=await client.auth.signUp(v);
+ if(error){show('Não foi possível criar a conta: '+error.message);return}
+ show(data.session?'Conta criada. O acesso ao curso ainda precisa ser liberado.':'Cadastro iniciado. Confira seu e-mail para confirmar a conta. Depois, o acesso ao curso precisa ser liberado.');
+ }catch(e){show('Falha de conexão: '+(e&&e.message?e.message:'erro desconhecido'))}finally{this.disabled=false}
+});
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </body></html>
